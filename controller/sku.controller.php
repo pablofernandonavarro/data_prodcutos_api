@@ -10,8 +10,17 @@ class ControllerSku{
     }
 
     public function index(){
+
+        $sku = ModelSku::index('ARTICULOS');
         $json = array(
-            "detalle" => 'estas en la vista de un sku de icg'
+            "detalle" => $sku
+        );
+        echo json_encode($json, true);
+        return;
+    }
+    public function show($id){
+        $json = array(
+            "detalle" => 'el id es : '. $id
         );
         echo json_encode($json, true);
         return;
