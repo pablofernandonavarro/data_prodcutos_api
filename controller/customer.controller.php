@@ -1,10 +1,12 @@
 <?php
 class ControllerCustomer{
        
-    public function customer(){  
+    public function show($id){  
 
+
+        $customer_id = ModelCustomer::find($id);
         $json = array(
-            "detalle" => 'estas en la vista de un cliente de icg'
+            "detalle" => $customer_id,
         );
         echo json_encode($json, true);
         return;
@@ -13,8 +15,10 @@ class ControllerCustomer{
     }
     public function all_customers(){  
 
+        $customers= ModelCustomer::index("clientes");
+
         $json = array(
-            "detalle" => 'estas en la vista de todos los clientes de icg'
+            "detalle" => $customers,
         );
         echo json_encode($json, true);
         return;

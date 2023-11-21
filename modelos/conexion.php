@@ -1,15 +1,20 @@
-
 <?php
-$dsn = 'odbc:MSSQLTESTING';
-$usuario = 'sa';
-$pass = 'masterkey';
+class Conexion
+{
+    static public function conect()
+    {
 
-try {
-    $conexion = new PDO($dsn, $usuario, $pass);
-    
+        $dsn = 'datos_testing_icg';
+        $usuario = "root";
+        $pass = "";
 
-} catch (PDOException $e) {
-    echo 'Falló la conexión: ' . $e->getMessage();
-    exit;
+        try {
+            $link = new PDO("mysql:host=localhost;dbname=$dsn",$usuario,$pass);
+            $link->exec("set names utf8");
+            return $link;
+        } catch (PDOException $e) {
+            echo 'Falló la conexión: ' . $e->getMessage();
+            exit;
+        }
+    }
 }
-

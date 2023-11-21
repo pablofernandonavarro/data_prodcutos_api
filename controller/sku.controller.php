@@ -1,31 +1,29 @@
 <?php
 class ControllerSku{
 
-    public function all_sku(){
-        $json = array(
-            "detalle" => 'estas en la vista todos los sku de icg'
-        );
-        echo json_encode($json, true);
-        return;
-    }
 
-    public function index(){
-
-        $sku = ModelSku::index('ARTICULOS');
-        $json = array(
-            "detalle" => $sku
-        );
-        echo json_encode($json, true);
-        return;
-    }
-    public function show($id){
-        $json = array(
-            "detalle" => 'el id es : '. $id
-        );
-        echo json_encode($json, true);
-        return;
-    }
-}
-
+    // if(isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])){
+        public function show($id)
+        {
+            
+            $sku_id = ModelSku::find($id);
+            $json = array(
+                "detalle" => $sku_id,
+            );
+            echo json_encode($json, true);
+            return;
+        }
+        public function all_sku()
+        {
+            $sku = ModelSku::index('productos');
+            $json = array(
+                "detalle" => $sku,
+            );
+            echo json_encode($json, true);
+            return;
+        }
+        
+     }
+    // }
 
 ?>
