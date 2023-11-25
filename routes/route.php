@@ -15,14 +15,44 @@ if (count(array_filter($arrayroutes)) == 1) {
     echo json_encode($json, true);
     return;
 } else {
-   
+
+
+
+
+    if (array_filter($arrayroutes)[2] == "user") {
+
+
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $dataUser = array(
+                "email" => $_POST['email'],
+                "password" => $_POST['password'],
+                "name" => $_POST['name'],
+            );
+
+     
+
+
+
+             $user = new ControllerUsers();
+             $user->create($dataUser);
+        }
+    }
+
+
+
+
+
+
+
+
+
     if (array_filter($arrayroutes)[2] == "all_sku") {
 
-    
+
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'GET') {
             $allsku = new ControllerSku();
             $allsku->all_sku();
-            
         }
     }
 
@@ -37,8 +67,8 @@ if (count(array_filter($arrayroutes)) == 1) {
 
             if (isset($_SERVER['REQUEST_METHOD']) && isset(array_filter($arrayroutes)[2])) {
 
-                 $sku = new ControllerSku();
-                 $sku->show(array_filter($arrayroutes)[3]);
+                $sku = new ControllerSku();
+                $sku->show(array_filter($arrayroutes)[3]);
             }
         }
     }
@@ -62,7 +92,4 @@ if (count(array_filter($arrayroutes)) == 1) {
             $clientes->all_customers();
         }
     }
-
-
-
 }
